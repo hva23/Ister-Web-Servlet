@@ -39,6 +39,10 @@ public class UserFilter implements Filter {
                 if (cookieName.contentEquals("USER_ID") && !cookieValue.contentEquals("")) {
                     if (UserSignUp.loggedInUsers.contains(cookieValue))
                         chain.doFilter(request, response);
+                    else {
+                        PrintWriter out = response.getWriter();
+                        out.println("Unknown user\nPlease login again");
+                    }
                 }
             }
         } else {
